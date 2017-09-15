@@ -1,0 +1,56 @@
+
+
+    <!doctype html>
+    <!-- ng-app :  directiva que autoarranca la aplicación web AngularJS
+    se igual al NOMBRE DEL MODULO con el que se desea que arranque la aplicacion -->
+    <html ng-app="moduloLista">
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <!-- Referencia al archivo donde esta el codigo js del controlador -->
+        <script src="todo.js"></script>
+        <link rel="stylesheet" href="todo.css">
+      </head>
+      <body>
+        <h2>Pendientes</h2>
+        <!-- Agregamos la directiva para hacer referencia al controlador
+        en un archivo externo -->
+        <div ng-controller="Controller as alias">
+          <!-- Binding one way -->
+          <span>{{alias.remaining() + " apurate!!!" }} de {{alias.todos.length}} pendientes </span>
+          <!-- ng-click : Directiva encargada especificar la accion de los eventos sobre el boton
+          EJEMPLO:
+          ng-click="numero=2; otraCosa=dato -->
+          [ <a href="" ng-click="alias.archive()">eliminar</a> ]
+          <ul class="unstyled">
+            <!-- ng-repeat : para implementar una repetición (un bucle)
+            EJEMPLO :
+            ng-repeat="elemento in miColeccion" -->
+            <li ng-repeat="todo in alias.todos">
+              <label class="checkbox">
+                <!-- ng-model:
+                directiva que nos dice que ese campo de texto forma
+                parte de nuestro modelo -->
+                <input type="checkbox" ng-model="todo.done">
+                <span class="done-{{todo.done}}">{{todo.text}}</span>
+              </label>
+            </li>
+          </ul>
+          <form ng-submit="alias.addTodo()">
+            <input type="text" ng-model="alias.todoText"  size="30"
+                   placeholder="Agregar nuevo pendiente">
+            <input class="btn-primary" type="submit" value="Agregar">
+          </form>
+
+        </div>
+        <br/>
+        <div>
+          <select ng-model="campoSeleccionado">
+            <option value="comer">comer</option>
+            <option value="dormir">dormir</option>
+          </select>
+          {{campoSeleccionado}}
+        </div>
+        {{alias.todos[0].text}}
+        <button ng-show="alias.scope.available">Directiva ng-show</button>
+      </body>
+    </html>

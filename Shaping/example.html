@@ -1,0 +1,30 @@
+  <!doctype html>
+    <html ng-app>
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+        <!-- Referencia al archivo donde esta el codigo js del controlador -->
+        <script src="controller.js"></script>
+        <link rel="stylesheet" href="todo.css">
+      </head>
+      <body>
+        <section>
+          <ul class = "nav nav-pills">
+            <li> <a href = "#" > Descripcion < /a ></li>
+              <li> <a href = "#" > Descripcion < /a ></li>
+                <li> <a href = "#"> Descripcion < /a ></li>
+          </ul>
+        </section>
+
+        <div >
+          <input type="text" ng-model="sunombre" placeholder="Escribe tu nombre">
+            {{sunombre}}
+
+          <ul class="unstyled">
+            <li ng-repeat="objeto in crt.objetos">
+
+            </li>
+          </ul>
+        </div>
+
+      </body>
+    </html>
